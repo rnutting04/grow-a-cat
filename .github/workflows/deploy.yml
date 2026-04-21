@@ -1,0 +1,55 @@
+name: Deploy to Roblox
+
+# Publishes the built .rbxl to a Roblox place whenever you push a tag
+# like v1.0.0, or manually via the Actions tab.
+#
+# Required repo secrets (Settings → Secrets and variables → Actions):
+#   ROBLOX_API_KEY   — Open Cloud API key with "Place Publish" scope
+#   ROBLOX_UNIVERSE_ID — the universe (experience) numeric ID
+#   ROBLOX_PLACE_ID  — the place numeric ID inside that universe
+
+on:
+  push:
+    tags:
+      - "v*"
+  workflow_dispatch:
+    inputs:
+      version_type:
+        description: "Publish as Published (live) or Saved (draft)?"
+        required: true
+        default: "Saved"
+        type: choice
+        options:
+          - Saved
+          - Published
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install Rokit
+        uses: CompeyDev/setup-rokit@v0.1.2
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Install Wally packages
+        run: wally install
+
+      - name: Build place file
+        run: rojo build default.project.json --output game.rbxl
+
+      - name: Publish to Roblox
+        env:
+          API_KEY: ${{ secrets.ROBLOX_API_KEY }}
+          UNIVERSE_ID: ${{ secrets.ROBLOX_UNIVERSE_ID }}
+          PLACE_ID: ${{ secrets.ROBLOX_PLACE_ID }}
+          VERSION_TYPE: ${{ github.event.inputs.version_type || 'Published' }}
+        run: |
+          curl -X POST \
+            "https://apis.roblox.com/universes/v1/${UNIVERSE_ID}/places/${PLACE_ID}/versions?versionType=${VERSION_TYPE}" \
+            -H "x-api-key: ${API_KEY}" \
+            -H "Content-Type: application/octet-stream" \
+            --data-binary @game.rbxl \
+            --fail-with-body

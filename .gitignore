@@ -1,0 +1,137 @@
+# ─────────────────────────────────────────────────────────────
+# Wally packages
+# Restored on any machine with `wally install`. Never commit these.
+# ─────────────────────────────────────────────────────────────
+/Packages/
+/ServerPackages/
+/DevPackages/
+# Keep Wally's lockfile — pins exact versions for reproducible builds.
+!wally.lock
+
+# ─────────────────────────────────────────────────────────────
+# Rojo build artifacts
+# .rbxl / .rbxlx are large binary place files. They should be built
+# on demand, not committed. The exceptions let you commit small
+# reusable model files under assets/ if you want to.
+# ─────────────────────────────────────────────────────────────
+*.rbxl
+*.rbxlx
+*.rbxm
+*.rbxmx
+*.rbxl.lock
+*.rbxlx.lock
+!assets/*.rbxm
+!assets/*.rbxmx
+
+# Rojo sourcemap — regenerated automatically by the Luau LSP extension.
+sourcemap.json
+
+# ─────────────────────────────────────────────────────────────
+# Rokit (toolchain manager)
+# ─────────────────────────────────────────────────────────────
+/.rokit/
+
+# ─────────────────────────────────────────────────────────────
+# Roblox Studio backups & autosave
+# ─────────────────────────────────────────────────────────────
+*.RobloxStudio.lock
+AutoSaves/
+*.autosave
+*.bak
+
+# ─────────────────────────────────────────────────────────────
+# Editor / IDE files
+# Keep .vscode/settings.json, extensions.json, launch.json — those
+# are shared team config. Ignore personal/ephemeral files.
+# ─────────────────────────────────────────────────────────────
+.vscode/*
+!.vscode/settings.json
+!.vscode/extensions.json
+!.vscode/launch.json
+!.vscode/tasks.json
+.vscode/*.log
+
+# JetBrains (IntelliJ, Rider, etc.)
+.idea/
+*.iml
+
+# Sublime
+*.sublime-project
+*.sublime-workspace
+
+# Vim / Neovim
+*.swp
+*.swo
+*~
+.netrwhist
+
+# Emacs
+\#*\#
+.\#*
+
+# ─────────────────────────────────────────────────────────────
+# OS cruft
+# ─────────────────────────────────────────────────────────────
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+.Spotlight-V100
+.Trashes
+
+# Windows
+Thumbs.db
+Thumbs.db:encryptable
+ehthumbs.db
+ehthumbs_vista.db
+Desktop.ini
+$RECYCLE.BIN/
+*.stackdump
+
+# Linux
+.directory
+.Trash-*
+.fuse_hidden*
+.nfs*
+
+# ─────────────────────────────────────────────────────────────
+# Environment & secrets
+# Never commit API keys, tokens, or deploy credentials.
+# ─────────────────────────────────────────────────────────────
+.env
+.env.local
+.env.*.local
+*.pem
+*.key
+secrets.json
+.secrets/
+
+# ─────────────────────────────────────────────────────────────
+# Logs & diagnostics
+# ─────────────────────────────────────────────────────────────
+*.log
+logs/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# ─────────────────────────────────────────────────────────────
+# Test output & coverage
+# ─────────────────────────────────────────────────────────────
+coverage/
+*.lcov
+.nyc_output/
+test-results/
+
+# ─────────────────────────────────────────────────────────────
+# Scratch / working files
+# Use these folder/file names for anything you want to keep
+# locally without committing.
+# ─────────────────────────────────────────────────────────────
+/scratch/
+/tmp/
+/temp/
+*.tmp
+NOTES.local.md
+TODO.local.md

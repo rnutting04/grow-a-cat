@@ -1,0 +1,21 @@
+[package]
+name = "yourname/mygame"
+version = "0.1.0"
+registry = "https://github.com/UpliftGames/wally-index"
+realm = "shared"
+
+[dependencies]
+# Signal-based event system (better than BindableEvents for internal code)
+Signal = "sleitnick/signal@2.0.0"
+# Promise library for async flow
+Promise = "evaera/promise@4.0.0"
+# Type-safe Trove for connection/instance cleanup
+Trove = "sleitnick/trove@1.5.1"
+
+[server-dependencies]
+# Add server-only deps here, e.g. ProfileService for datastore safety:
+# ProfileService = "loleris/profileservice@1.4.1"
+
+[dev-dependencies]
+# Testing framework
+TestEZ = "roblox/testez@0.4.1"
