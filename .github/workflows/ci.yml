@@ -20,6 +20,12 @@ jobs:
       - name: Install Wally packages
         run: wally install
 
+      - name: Ensure package folders exist
+        run: |
+          mkdir -p Packages
+          mkdir -p ServerPackages
+          mkdir -p DevPackages
+
       - name: StyLua format check
         run: stylua --check src
 
