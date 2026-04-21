@@ -18,9 +18,13 @@ function InputController:OnAction(actionName: string, callback: (pressed: boolea
 
 	return function()
 		local list = listeners[actionName]
-		if not list then return end
+		if not list then
+			return
+		end
 		local i = table.find(list, callback)
-		if i then table.remove(list, i) end
+		if i then
+			table.remove(list, i)
+		end
 	end
 end
 

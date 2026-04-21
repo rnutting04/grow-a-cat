@@ -22,7 +22,9 @@ function Util.weightedPick<T>(entries: { { value: T, weight: number } }): T
 	local acc = 0
 	for _, e in entries do
 		acc += e.weight
-		if roll <= acc then return e.value end
+		if roll <= acc then
+			return e.value
+		end
 	end
 	return entries[#entries].value
 end
